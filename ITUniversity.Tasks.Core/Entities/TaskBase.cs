@@ -3,7 +3,7 @@
 using ITUniversity.Tasks.Enums;
 
 namespace ITUniversity.Tasks.Entities
-                                {
+{
     /// <summary>
     /// Базовый класс задач
     /// </summary>

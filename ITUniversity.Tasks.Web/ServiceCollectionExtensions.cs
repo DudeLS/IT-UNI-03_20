@@ -3,7 +3,7 @@ using ITUniversity.Tasks.Stores;
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ITUniversity.Tasks
+namespace ITUniversity.Tasks.Web
 {
     public static class ServiceCollectionExtensions
     {

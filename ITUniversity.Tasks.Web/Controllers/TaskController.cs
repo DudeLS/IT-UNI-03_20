@@ -1,4 +1,5 @@
-﻿using ITUniversity.Tasks.Managers;
+﻿using ITUniversity.Tasks.Entities;
+using ITUniversity.Tasks.Managers;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,20 @@ namespace ITUniversity.Tasks.Web.Controllers
         public IActionResult Index()
         {
             var tasks = taskManager.GetAll();
-            return View();
+            return View(tasks);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View(new TaskBase());
+        }
+
+        [HttpPost]
+        public IActionResult Create(TaskBase task)
+        {
+            //......
+            return null;
         }
     }
 }
