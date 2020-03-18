@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 
 using ITUniversity.Tasks.Entities;
-using ITUniversity.Tasks.Stores;
+using ITUniversity.Tasks.Managers;
 using ITUniversity.Tasks.Web.Models;
 
 using Microsoft.AspNetCore.Mvc;
@@ -13,20 +13,20 @@ namespace ITUniversity.Tasks.Web.Controllers
     {
         private readonly ILogger<HomeController> logger;
 
-        private readonly ITaskStore taskStore;
+        private readonly ITaskManager taskManager;
 
-        public HomeController(ILogger<HomeController> logger, ITaskStore taskStore)
+        public HomeController(ILogger<HomeController> logger, ITaskManager taskManager)
         {
             this.logger = logger;
-            this.taskStore = taskStore;
+            this.taskManager = taskManager;
         }
 
         public IActionResult Index()
         {
-            var a = taskStore.Save(new TaskBase { Subject = "Hello", Description = "Hello world!!!" });
+            var a = taskManager.Create(new TaskBase { Subject = "Hello", Description = "Hello world!!!" });
 
-            a.Subject = "New";
-            var d = taskStore.Update(a);
+            //a.Subject = "New";
+            //var d = taskManager.Update(a);
 
             return View();
         }

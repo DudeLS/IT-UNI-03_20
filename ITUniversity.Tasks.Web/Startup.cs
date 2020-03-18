@@ -1,5 +1,3 @@
-using ITUniversity.Tasks.Stores;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,7 +19,7 @@ namespace ITUniversity.Tasks.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<ITaskStore, TaskMemoryStore>();
+            services.AddTaskCoreServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,6 @@
-﻿using ITUniversity.Tasks.Entities;
+﻿using System.Collections.Generic;
+
+using ITUniversity.Tasks.Entities;
 
 namespace ITUniversity.Tasks.Managers
 {
@@ -20,5 +22,11 @@ namespace ITUniversity.Tasks.Managers
         /// <param name="subject"></param>
         /// <returns></returns>
         TaskBase Create(string subject);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        ICollection<TaskBase> GetAll();
     }
 }

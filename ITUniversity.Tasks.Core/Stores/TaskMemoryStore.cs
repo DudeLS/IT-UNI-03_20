@@ -29,6 +29,7 @@ namespace ITUniversity.Tasks.Stores
             var saved = tasks.FirstOrDefault(item => item.CustomEquals(task));
             if (saved != null)
             {
+                task.Id = saved.Id;
                 return saved.Copy();
             }
             task.Id = counter++;
@@ -57,6 +58,12 @@ namespace ITUniversity.Tasks.Stores
         {
             var saved = InternalGet(id);
             return saved?.Copy();
+        }
+
+        /// <inheritdoc/>
+        public ICollection<TaskBase> GetAll()
+        {
+            return tasks.Select(task => task.Copy()).ToList();
         }
 
         /// <inheritdoc/>
