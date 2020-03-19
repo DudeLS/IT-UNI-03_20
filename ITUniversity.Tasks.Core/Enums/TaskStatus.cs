@@ -1,4 +1,6 @@
-﻿namespace ITUniversity.Tasks.Enums
+﻿using System.ComponentModel;
+
+namespace ITUniversity.Tasks.Enums
 {
     /// <summary>
     /// Статус задачи

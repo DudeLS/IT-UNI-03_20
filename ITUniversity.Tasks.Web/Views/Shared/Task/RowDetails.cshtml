@@ -1,0 +1,38 @@
+﻿@using ITUniversity.Tasks.Entities
+@using TaskStatus = ITUniversity.Tasks.Enums.TaskStatus
+
+@model TaskBase
+
+@{
+    Func<TaskBase, string> calculateCardTitleStyle = task =>
+    {
+        return $"display: flex;{(string.IsNullOrWhiteSpace(task.Description) ? " margin-bottom: 0px;" : "")}";
+    };
+
+    Func<TaskBase, string> calculateBadgeClass = task =>
+    {
+        return $"badge badge-{(Model.Status == TaskStatus.ToDo ? "primary" : "danger")}";
+    };
+}
+
+<div class="card" id="task_@Model.Id">
+    <div class="card-body">
+        <div style="display: flex">
+            <h5 class="card-title" style="@calculateCardTitleStyle(Model)">
+                @Model.Subject
+                <span class="@calculateBadgeClass(Model)" style="margin-left: 5px;">
+                    @Model.Status
+                </span>
+            </h5>
+            <div style="width: 100%;">
+                <span class="material-icons" style="float: right; cursor: pointer; color: red;" onclick="task.delete('@Model.Id', this)">
+                    delete
+                </span>
+                <span class="material-icons" style="float: right; cursor: pointer;" onclick="alert('edit');">
+                    edit
+                </span>
+            </div>
+        </div>
+        @Model.Description
+    </div>
+</div>

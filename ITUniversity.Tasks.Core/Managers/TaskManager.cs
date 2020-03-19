@@ -20,6 +20,8 @@ namespace ITUniversity.Tasks.Managers
         public TaskBase Create(TaskBase task)
         {
             task.CreationDate = DateTime.Now;
+            task.Status = Enums.TaskStatus.ToDo;
+
             return taskStore.Save(task);
         }
 
@@ -34,6 +36,12 @@ namespace ITUniversity.Tasks.Managers
         public ICollection<TaskBase> GetAll()
         {
             return taskStore.GetAll();
+        }
+
+        /// <inheritdoc/>
+        public void Delete(long id)
+        {
+            taskStore.Delete(id);
         }
     }
 }

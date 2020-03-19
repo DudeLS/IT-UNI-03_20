@@ -1,8 +1,11 @@
-﻿@using ITUniversity.Tasks.Entities
+﻿@using ITUniversity.Tasks.Web.Models
 
-@model TaskBase
+@model TaskCreateModel
 
 <div class="card">
+    <div class="card-header">
+        Создание задачи
+    </div>
     <div class="card-body">
         @using (Html.BeginForm("Create", "Task"))
         {
@@ -15,8 +18,14 @@
                 @Html.LabelFor(model => model.Description)
                 @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
             </div>
-            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <button type="submit" class="btn btn-success">Сохранить</button>
             <a class="btn btn-danger" href="@Url.Action("Index", "Task")">Отмена</a>
         }
     </div>
 </div>
+
+@section scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

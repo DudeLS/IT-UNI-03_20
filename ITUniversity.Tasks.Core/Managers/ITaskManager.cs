@@ -28,5 +28,11 @@ namespace ITUniversity.Tasks.Managers
         /// </summary>
         /// <returns></returns>
         ICollection<TaskBase> GetAll();
+
+        /// <summary>
+        /// Удалить
+        /// </summary>
+        /// <param name="id">Идентификатор</param>
+        void Delete(long id);
     }
 }

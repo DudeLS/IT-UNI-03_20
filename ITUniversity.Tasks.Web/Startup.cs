@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +23,9 @@ namespace ITUniversity.Tasks.Web
                 .AddControllersWithViews()
                 .AddRazorRuntimeCompilation() //Для изменения cshtml в запущенном приложении
                 ;
+
+            services
+                .AddAutoMapper(typeof(Startup).Assembly);
 
             services
                 .AddTaskCoreServices() //Регистрация сервесов Core
