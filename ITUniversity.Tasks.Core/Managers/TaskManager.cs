@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+
 using ITUniversity.Tasks.Entities;
 using ITUniversity.Tasks.Stores;
 
@@ -17,6 +19,7 @@ namespace ITUniversity.Tasks.Managers
         /// <inheritdoc/>
         public TaskBase Create(TaskBase task)
         {
+            task.CreationDate = DateTime.Now;
             return taskStore.Save(task);
         }
 

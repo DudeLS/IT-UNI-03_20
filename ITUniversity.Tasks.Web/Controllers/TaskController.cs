@@ -29,8 +29,8 @@ namespace ITUniversity.Tasks.Web.Controllers
         [HttpPost]
         public IActionResult Create(TaskBase task)
         {
-            //......
-            return null;
+            taskManager.Create(task);
+            return RedirectToAction("Index");
         }
     }
 }

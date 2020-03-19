@@ -23,11 +23,6 @@ namespace ITUniversity.Tasks.Web.Controllers
 
         public IActionResult Index()
         {
-            var a = taskManager.Create(new TaskBase { Subject = "Hello", Description = "Hello world!!!" });
-
-            //a.Subject = "New";
-            //var d = taskManager.Update(a);
-
             return View();
         }
 

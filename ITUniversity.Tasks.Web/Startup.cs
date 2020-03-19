@@ -18,8 +18,14 @@ namespace ITUniversity.Tasks.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            services.AddTaskCoreServices();
+            services
+                .AddControllersWithViews()
+                .AddRazorRuntimeCompilation() //Для изменения cshtml в запущенном приложении
+                ;
+
+            services
+                .AddTaskCoreServices() //Регистрация сервесов Core
+                ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
