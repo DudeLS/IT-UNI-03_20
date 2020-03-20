@@ -19,7 +19,9 @@
     <div class="card-body">
         <div style="display: flex">
             <h5 class="card-title" style="@calculateCardTitleStyle(Model)">
-                @Model.Subject
+                <a href="@Url.Action("Details", "Task", new { id = Model.Id })">
+                    @Model.Subject
+                </a>
                 <span class="@calculateBadgeClass(Model)" style="margin-left: 5px;">
                     @Model.Status
                 </span>

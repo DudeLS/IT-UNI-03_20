@@ -33,6 +33,12 @@ namespace ITUniversity.Tasks.Managers
         }
 
         /// <inheritdoc/>
+        public TaskBase Get(long id)
+        {
+            return taskStore.Get(id);
+        }
+
+        /// <inheritdoc/>
         public ICollection<TaskBase> GetAll()
         {
             return taskStore.GetAll();

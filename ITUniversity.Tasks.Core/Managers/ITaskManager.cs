@@ -24,6 +24,13 @@ namespace ITUniversity.Tasks.Managers
         TaskBase Create(string subject);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        TaskBase Get(long id);
+
+        /// <summary>
         /// Получить все
         /// </summary>
         /// <returns></returns>

@@ -51,5 +51,12 @@ namespace ITUniversity.Tasks.Web.Controllers
 
             return Json(new { success = true });
         }
+
+        [HttpGet]
+        public IActionResult Details(long id)
+        {
+            var task = taskManager.Get(id);
+            return View(task);
+        }
     }
 }
