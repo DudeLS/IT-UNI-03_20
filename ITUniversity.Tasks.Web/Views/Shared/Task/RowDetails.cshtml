@@ -30,7 +30,7 @@
                 <span class="material-icons" style="float: right; cursor: pointer; color: red;" onclick="task.delete('@Model.Id', this)">
                     delete
                 </span>
-                <span class="material-icons" style="float: right; cursor: pointer;" onclick="alert('edit');">
+                <span class="material-icons" style="float: right; cursor: pointer;" onclick="window.location.href = '@(Url.Action("Edit", "Task", new { id = Model.Id }))';">
                     edit
                 </span>
             </div>

@@ -47,7 +47,7 @@ namespace ITUniversity.Tasks.Stores
             }
             saved.Subject = task.Subject;
             saved.Description = task.Description;
-            saved.CreationDate = task.CreationDate;
+            //saved.CreationDate = task.CreationDate;
             saved.Status = task.Status;
 
             return task;

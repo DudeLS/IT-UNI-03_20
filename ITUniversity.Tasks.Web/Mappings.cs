@@ -10,6 +10,8 @@ namespace ITUniversity.Tasks.Web
         public Mappings()
         {
             CreateMap<TaskCreateModel, TaskBase>();
+            CreateMap<TaskBase, TaskEditModel>();
+            CreateMap<TaskEditModel, TaskBase>();
         }
     }
 }

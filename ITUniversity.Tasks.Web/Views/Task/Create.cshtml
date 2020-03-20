@@ -18,6 +18,7 @@
                 @Html.LabelFor(model => model.Description)
                 @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
             </div>
+
             <button type="submit" class="btn btn-success">Сохранить</button>
             <a class="btn btn-danger" href="@Url.Action("Index", "Task")">Отмена</a>
         }

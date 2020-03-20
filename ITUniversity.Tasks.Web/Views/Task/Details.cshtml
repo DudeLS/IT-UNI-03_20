@@ -2,13 +2,33 @@
 
 @model TaskBase
 
+@{
+    var backUrl = Url.Action("Index", "Task");
+}
+
 <div class="card">
+    <div class="card-header">
+        Задача - @Model.Subject
+        <a style="float: right;" href="@backUrl" type="button" class="btn btn-primary">Назад</a>
+    </div>
     <div class="card-body">
-        <div class="form-group">
-            Subject: @Model.Subject
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Description, new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </div>
         </div>
-        <div class="form-group">
-            Description: @Model.Description
+        <div class="form-group row">
+            @Html.LabelFor(model => model.CreationDate, new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.CreationDate)
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Status, new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.DisplayFor(model => model.Status)
+            </div>
         </div>
     </div>
 </div>
