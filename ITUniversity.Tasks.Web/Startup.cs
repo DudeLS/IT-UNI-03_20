@@ -1,9 +1,14 @@
 using AutoMapper;
+
+using ITUniversity.AspNetCore;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
+using Newtonsoft.Json.Serialization;
 
 namespace ITUniversity.Tasks.Web
 {
@@ -21,7 +26,15 @@ namespace ITUniversity.Tasks.Web
         {
             services
                 .AddControllersWithViews()
-                .AddRazorRuntimeCompilation() //Для изменения cshtml в запущенном приложении
+                .AddNewtonsoftJson(options =>
+                {
+                    // Use the default property (Pascal) casing
+                    //options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+
+                    // Configure a custom converter
+                    //options.SerializerOptions.Converters.Add(new MyCustomJsonConverter());
+                })
+                .AddRazorRuntimeCompilation() //Для изменения cshtml в запущенном приложении                
                 ;
 
             services
@@ -29,7 +42,11 @@ namespace ITUniversity.Tasks.Web
 
             services
                 .AddTaskCoreServices() //Регистрация сервесов Core
+                .AddTaskApplicationServices() //Регистрация сервисов Application
                 ;
+
+            services
+                .AddCore();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
