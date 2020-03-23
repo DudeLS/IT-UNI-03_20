@@ -11,9 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Zero", "Zero", "{3A94D15A-A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITUniversity", "Zero\ITUniversity\ITUniversity.csproj", "{7A08A48E-C5D7-4E02-9A1F-D241D387CAF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITUniversity.AspNetCore", "Zero\ITUniversity.AspNetCore\ITUniversity.AspNetCore.csproj", "{BA1D354C-8FDA-4BC2-A4DE-DC874146E73A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITUniversity.AspNetCore", "Zero\ITUniversity.AspNetCore\ITUniversity.AspNetCore.csproj", "{BA1D354C-8FDA-4BC2-A4DE-DC874146E73A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITUniversity.Tasks.API", "ITUniversity.Tasks.API\ITUniversity.Tasks.API.csproj", "{4562BADF-2919-42B0-9335-996DBE933BF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITUniversity.Tasks.API", "ITUniversity.Tasks.API\ITUniversity.Tasks.API.csproj", "{4562BADF-2919-42B0-9335-996DBE933BF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITUniversity.Tasks.NHibernate", "ITUniversity.Tasks.NHibernate\ITUniversity.Tasks.NHibernate.csproj", "{29FA30F1-CB61-4721-90BF-1DAC7D1257B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{4562BADF-2919-42B0-9335-996DBE933BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4562BADF-2919-42B0-9335-996DBE933BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4562BADF-2919-42B0-9335-996DBE933BF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29FA30F1-CB61-4721-90BF-1DAC7D1257B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29FA30F1-CB61-4721-90BF-1DAC7D1257B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29FA30F1-CB61-4721-90BF-1DAC7D1257B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29FA30F1-CB61-4721-90BF-1DAC7D1257B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

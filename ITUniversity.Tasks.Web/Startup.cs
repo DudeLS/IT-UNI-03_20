@@ -39,8 +39,10 @@ namespace ITUniversity.Tasks.Web
                 .AddAutoMapper(typeof(Startup).Assembly);
 
             services
-                .AddTaskCoreServices() //Регистрация сервесов Core
-                .AddTaskApplicationServices(); //Регистрация сервисов API
+                .AddTaskCore() //Регистрация сервесов Core
+                .AddTaskApplication() //Регистрация сервисов API
+                .AddTaskNHibernate(Configuration.GetConnectionString("Default"))
+                ; 
 
             services
                 .AddCore();
