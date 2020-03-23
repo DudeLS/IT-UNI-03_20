@@ -1,4 +1,6 @@
-﻿namespace ITUniversity.Tasks.Web.Models
+﻿using System;
+
+namespace ITUniversity.Tasks.Web.Models
 {
     /// <summary>
     /// Модель редактирования задачи
@@ -27,6 +29,15 @@
         /// Описание
         /// </summary>
         public string Description
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Дата создания
+        /// </summary>
+        public DateTime CreationDate
         {
             get;
             set;

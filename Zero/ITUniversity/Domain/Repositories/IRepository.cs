@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace ITUniversity.Domain.Repositories
 {
@@ -33,6 +34,12 @@ namespace ITUniversity.Domain.Repositories
         /// </summary>
         /// <returns></returns>
         IQueryable<TEntity> GetAll();
+
+        /// <summary>
+        /// Получить все
+        /// </summary>
+        /// <returns></returns>
+        ICollection<TEntity> GetAllList();
 
         /// <summary>
         /// Получить
