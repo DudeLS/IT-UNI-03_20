@@ -2,6 +2,7 @@
 
 using ITUniversity.Application.Services;
 using ITUniversity.Tasks.API.Services.Dto;
+using ITUniversity.Tasks.Entities;
 using ITUniversity.Tasks.Managers;
 
 namespace ITUniversity.Tasks.API.Services.Imps
@@ -27,17 +28,23 @@ namespace ITUniversity.Tasks.API.Services.Imps
 
         public TaskDto Create(TaskCreateDto task)
         {
-            throw new System.NotImplementedException();
+            var entity = mapper.Map<TaskBase>(task);
+            taskManager.Create(entity);
+            var dto = mapper.Map<TaskDto>(entity);
+            return dto;
         }
 
         public TaskDto Update(TaskUpdateDto task)
         {
-            throw new System.NotImplementedException();
+            var entity = mapper.Map<TaskBase>(task);
+            taskManager.Update(entity);
+            var dto = mapper.Map<TaskDto>(entity);
+            return dto;
         }
 
         public void Delete(long id)
         {
-            throw new System.NotImplementedException();
+            taskManager.Delete(id);
         }
     }
 }

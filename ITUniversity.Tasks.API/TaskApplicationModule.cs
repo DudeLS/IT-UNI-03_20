@@ -1,6 +1,6 @@
 ﻿namespace ITUniversity.Tasks.API
 {
-    public class TaskAPIModule
+    public class TaskApplicationModule
     {
 
     }
