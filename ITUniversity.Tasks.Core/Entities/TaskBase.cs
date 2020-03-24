@@ -1,5 +1,5 @@
 ﻿using System;
-
+using ITUniversity.Domain.Entities;
 using ITUniversity.Tasks.Enums;
 
 namespace ITUniversity.Tasks.Entities
@@ -7,12 +7,12 @@ namespace ITUniversity.Tasks.Entities
     /// <summary>
     /// Базовый класс задач
     /// </summary>
-    public class TaskBase
+    public class TaskBase : Entity<long>
     {
         /// <summary>
-        /// Идентификатор
+        /// Имя таблицы
         /// </summary>
-        public virtual long Id { get; set; }
+        public const string TableName = "Tasks";
 
         /// <summary>
         /// Тема

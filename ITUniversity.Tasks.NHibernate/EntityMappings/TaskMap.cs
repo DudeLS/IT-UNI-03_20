@@ -1,13 +1,19 @@
 ﻿using ITUniversity.Tasks.Entities;
-
+using ITUniversity.Tasks.Enums;
 using NHibernate;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
 
 namespace ITUniversity.Tasks.NHibernate.EntityMappings
 {
+    /// <summary>
+    /// Описание структуры сущности <see cref="TaskMap"/>
+    /// </summary>
     public class TaskMap : ClassMapping<TaskBase>
     {
+        /// <summary>
+        /// Инициализировать экземпляр <see cref="TaskMap"/>
+        /// </summary>
         public TaskMap()
         {
             Id(x => x.Id, x =>
@@ -33,7 +39,13 @@ namespace ITUniversity.Tasks.NHibernate.EntityMappings
                 x.NotNullable(true);
             });
 
-            Table("Tasks");
+            Property(b => b.Status, x =>
+            {
+                x.Type(NHibernateUtil.Int32);
+                x.NotNullable(true);
+            });
+
+            Table(TaskBase.TableName);
         }
     }
 }
