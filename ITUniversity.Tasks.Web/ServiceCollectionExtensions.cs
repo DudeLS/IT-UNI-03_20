@@ -55,6 +55,7 @@ namespace ITUniversity.Tasks.Web
             services.AddSingleton(sessionFactory);
             services.AddScoped(factory => sessionFactory.OpenSession());
             services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

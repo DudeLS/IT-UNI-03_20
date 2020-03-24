@@ -1,24 +1,21 @@
 ﻿using System.Diagnostics;
 
-using ITUniversity.Tasks.Entities;
-using ITUniversity.Tasks.Managers;
 using ITUniversity.Tasks.Web.Models;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace ITUniversity.Tasks.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> logger;
 
-        private readonly ITaskManager taskManager;
-
-        public HomeController(ILogger<HomeController> logger, ITaskManager taskManager)
+        public HomeController(ILogger<HomeController> logger)
         {
             this.logger = logger;
-            this.taskManager = taskManager;
         }
 
         public IActionResult Index()
