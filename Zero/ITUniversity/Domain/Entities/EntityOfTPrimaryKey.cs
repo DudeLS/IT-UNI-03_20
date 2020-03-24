@@ -7,6 +7,10 @@
     public abstract class Entity<TPrimaryKey> : IEntity<TPrimaryKey>
     {
         /// <inheritdoc/>
-        public virtual TPrimaryKey Id { get; set; }
+        public virtual TPrimaryKey Id
+        {
+            get;
+            set;
+        }
     }
 }

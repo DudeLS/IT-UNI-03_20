@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 using ITUniversity.Domain.Entities;
 using ITUniversity.Domain.Repositories.Impls;
@@ -12,7 +11,7 @@ namespace ITUniversity.Tasks.NHibernate.Repositories
     /// </summary>
     /// <typeparam name="TEntity">Тип сущности</typeparam>
     /// <typeparam name="TPrimaryKey">Тип первичного ключа</typeparam>
-    public class NhRepositoryBase<TEntity, TPrimaryKey> : RepositoryBase<TEntity, TPrimaryKey>, IDisposable
+    public class NhRepositoryBase<TEntity, TPrimaryKey> : RepositoryBase<TEntity, TPrimaryKey>//, IDisposable
         where TEntity : class, IEntity<TPrimaryKey>
     {
         public virtual ISession Session { get; }
@@ -65,9 +64,9 @@ namespace ITUniversity.Tasks.NHibernate.Repositories
             Session.Flush(); //Не правильно, только для тестов работы приложения
         }
 
-        public void Dispose()
-        {
-            //transaction.Commit();
-        }
+        //public void Dispose()
+        //{
+        //    //transaction.Commit();
+        //}
     }
 }

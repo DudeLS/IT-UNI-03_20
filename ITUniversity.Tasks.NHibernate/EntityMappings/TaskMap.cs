@@ -1,5 +1,5 @@
 ﻿using ITUniversity.Tasks.Entities;
-using ITUniversity.Tasks.Enums;
+
 using NHibernate;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Mapping.ByCode.Conformist;
