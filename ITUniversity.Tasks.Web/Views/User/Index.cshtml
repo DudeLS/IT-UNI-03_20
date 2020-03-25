@@ -1,0 +1,44 @@
+﻿@using ITUniversity.Tasks.API.Services.Dto
+
+@model ICollection<UserDto>
+
+@{
+    ViewData["Title"] = "Список пользователей";
+    var createUrl = Url.Action("Add", "Task");
+}
+
+<div class="card">
+    <div class="card-header">
+        Список пользователей
+    </div>
+    <div class="card-body">
+        <table class="table table-borderless">
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td style="padding-left: 0px; padding-right: 0px;">
+                        <div class="card" id="user_@user.Id">
+                            <div class="card-body">
+                                <div style="display: flex">
+                                    <h5 style="display: flex; margin-bottom: 0px;">
+                                        @user.Login
+                                    </h5>
+                                    <div style="width: 100%;">
+                                        <span class="material-icons" style="float: right; cursor: pointer; color: red;" onclick="user.block('@user.Id', this)">
+                                            block
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+@section scripts
+{
+    @*<script src="~/view-resources/task/scripts.js"></script>*@
+}

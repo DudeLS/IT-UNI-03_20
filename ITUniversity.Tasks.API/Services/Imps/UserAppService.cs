@@ -1,4 +1,7 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using AutoMapper;
 
 using ITUniversity.Tasks.API.Services.Dto;
 using ITUniversity.Tasks.Entities;
@@ -46,6 +49,13 @@ namespace ITUniversity.Tasks.API.Services.Imps
         {
             var entity = userRepository.FirstOrDefault(e => e.Login == login && e.Password == password);
             return mapper.Map<UserDto>(entity);
+        }
+
+        /// <inheritdoc/>
+        public ICollection<UserDto> GetAll()
+        {
+            var entities = userRepository.GetAll().ToList();//.Where()
+            return mapper.Map<ICollection<UserDto>>(entities);
         }
 
         /// <inheritdoc/>

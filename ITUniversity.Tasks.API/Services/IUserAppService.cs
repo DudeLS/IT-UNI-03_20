@@ -1,4 +1,6 @@
-﻿using ITUniversity.Application.Services;
+﻿using System.Collections.Generic;
+
+using ITUniversity.Application.Services;
 using ITUniversity.Tasks.API.Services.Dto;
 
 namespace ITUniversity.Tasks.API.Services
@@ -26,6 +28,14 @@ namespace ITUniversity.Tasks.API.Services
         /// <param name="login">Логин</param>
         /// <param name="password">Пароль</param>
         UserDto Get(string login, string password);
+
+        /// <summary>
+        /// Получить список пользователей
+        /// </summary>
+        /// <remarks>
+        /// Только не блокированные пользователи
+        /// </remarks>
+        ICollection<UserDto> GetAll();
 
         /// <summary>
         /// Проверить пароль
