@@ -7,6 +7,11 @@ namespace ITUniversity.Tasks.Web.Models.Account
     /// </summary>
     public class RegisterModel
     {
+        public static RegisterModel New
+        {
+            get { return new RegisterModel(); }
+        }
+
         /// <summary>
         /// Логин
         /// </summary>

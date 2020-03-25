@@ -7,6 +7,11 @@ namespace ITUniversity.Tasks.Web.Models.Account
     /// </summary>
     public class LoginModel
     {
+        public static LoginModel New
+        {
+            get { return new LoginModel(); }
+        }
+
         /// <summary>
         /// Логин
         /// </summary>

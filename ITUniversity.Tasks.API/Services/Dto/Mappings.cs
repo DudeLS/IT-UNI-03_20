@@ -9,8 +9,10 @@ namespace ITUniversity.Tasks.API.Services.Dto
         public Mappings()
         {
             CreateMap<TaskBase, TaskDto>();
-            CreateMap<TaskCreateDto, TaskBase>();
-            CreateMap<TaskUpdateDto, TaskBase>();
+            CreateMap<CreateTaskDto, TaskBase>();
+            CreateMap<UpdateTaskDto, TaskBase>();
+            CreateMap<CreateUserDto, User>();
+            CreateMap<User, UserDto>();
         }
     }
 }

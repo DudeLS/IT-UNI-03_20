@@ -28,6 +28,7 @@ namespace ITUniversity.Tasks.Web
         {
             services.CreateControllersForAppServices(typeof(TaskApplicationModule).Assembly);
             services.AddTransient<ITaskAppService, TaskAppService>();
+            services.AddTransient<IUserAppService, UserAppService>();
 
             return services;
         }

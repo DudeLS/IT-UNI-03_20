@@ -6,7 +6,7 @@ namespace ITUniversity.Tasks.API.Services.Dto
     /// <summary>
     /// ДТО обновления <see cref="TaskBase"/>
     /// </summary>
-    public class TaskUpdateDto
+    public class UpdateTaskDto
     {
         /// <summary>
         /// Индентификатор

@@ -2,8 +2,10 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-using ITUniversity.Tasks.Entities;
-using ITUniversity.Tasks.Repositories;
+using AutoMapper;
+
+using ITUniversity.Tasks.API.Services;
+using ITUniversity.Tasks.API.Services.Dto;
 using ITUniversity.Tasks.Web.Models.Account;
 
 using Microsoft.AspNetCore.Authentication;
@@ -12,21 +14,39 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ITUniversity.Tasks.Web.Controllers
 {
+    /// <summary>
+    /// Контроллер для работы с аккаунтом пользователя
+    /// </summary>
     public class AccountController : Controller
     {
-        private readonly IUserRepository userRepository;
+        private readonly IUserAppService userAppService;
 
-        public AccountController(IUserRepository userRepository)
+        private readonly IMapper mapper;
+
+        /// <summary>
+        /// Инициализировать экземпляр <see cref="AccountController"/>
+        /// </summary>
+        /// <param name="userAppService">Сервис для работы с пользователями</param>
+        /// <param name="mapper">Маппер</param>
+        public AccountController(IUserAppService userAppService, IMapper mapper)
         {
-            this.userRepository = userRepository;
+            this.userAppService = userAppService;
+            this.mapper = mapper;
         }
 
+        /// <summary>
+        /// Получить страницу логина
+        /// </summary>
         [HttpGet]
         public IActionResult Login()
         {
-            return View(new LoginModel());
+            return View(LoginModel.New);
         }
 
+        /// <summary>
+        /// Выполнить логин пользователя
+        /// </summary>
+        /// <param name="model">Данные для логина</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel model)
@@ -36,7 +56,7 @@ namespace ITUniversity.Tasks.Web.Controllers
                 return View(model);
             }
 
-            var user = userRepository.FirstOrDefault(u => u.Login == model.Login && u.Password == model.Password);
+            var user = userAppService.Get(model.Login, model.Password);
             if (user == null)
             {
                 ModelState.AddModelError(string.Empty, "Некорректные логин и(или) пароль");
@@ -47,12 +67,19 @@ namespace ITUniversity.Tasks.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// Получить страницу регистрации
+        /// </summary>
         [HttpGet]
         public IActionResult Register()
         {
-            return View(new RegisterModel());
+            return View(RegisterModel.New);
         }
 
+        /// <summary>
+        /// Выполнить регистрацию нового пользователя
+        /// </summary>
+        /// <param name="model">Данные для регистрации</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterModel model)
@@ -61,39 +88,44 @@ namespace ITUniversity.Tasks.Web.Controllers
             {
                 return View(model);
             }
-            var user = userRepository.FirstOrDefault(u => u.Login == model.Login);
+            var user = userAppService.Get(model.Login);
             if (user == null)
             {
-                userRepository.Save(new User { Login = model.Login, Email = model.Email, Password = model.Password });
+                var dto = mapper.Map<CreateUserDto>(model);
+                userAppService.Create(dto);
 
-                await Authenticate(model.Email);
+                await Authenticate(model.Login);
 
                 return RedirectToAction("Index", "Home");
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Некорректные логин и(или) пароль");
+                ModelState.AddModelError(string.Empty, "Такой пользователь существует");
+                return View(model);
             }
-            return View(model);
         }
 
-        private async Task Authenticate(string userName)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
-            };
-
-            var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
-        }
-
+        /// <summary>
+        /// Выполнить выход из системы
+        /// </summary>
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             return RedirectToAction("Login", "Account");
+        }
+
+        private async Task Authenticate(string login)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, login)
+            };
+
+            var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
     }
 }
