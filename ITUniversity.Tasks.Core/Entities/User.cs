@@ -38,5 +38,14 @@ namespace ITUniversity.Tasks.Entities
             get;
             set;
         }
+
+        /// <summary>
+        /// Заблокирован
+        /// </summary>
+        public virtual bool IsBlocked
+        {
+            get;
+            set;
+        }
     }
 }

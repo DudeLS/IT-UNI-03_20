@@ -43,5 +43,11 @@ namespace ITUniversity.Tasks.API.Services
         /// <param name="dto"></param>
         /// <param name="password">Пароль</param>
         bool IsValidPassword(UserDto dto, string password);
+
+        /// <summary>
+        /// Заблокировать пользователя
+        /// </summary>
+        /// <param name="id">Иденитификатор пользователя</param>
+        bool Block(int id);
     }
 }

@@ -54,7 +54,7 @@ namespace ITUniversity.Tasks.API.Services.Imps
         /// <inheritdoc/>
         public ICollection<UserDto> GetAll()
         {
-            var entities = userRepository.GetAll().ToList();//.Where()
+            var entities = userRepository.GetAll().Where(e => !e.IsBlocked).ToList();
             return mapper.Map<ICollection<UserDto>>(entities);
         }
 
@@ -63,6 +63,22 @@ namespace ITUniversity.Tasks.API.Services.Imps
         {
             var entity = userRepository.Get(dto.Id);
             return entity.Password == password;
+        }
+
+        /// <inheritdoc/>
+        public bool Block(int id)
+        {
+            try
+            {
+                var entity = userRepository.Get(id);
+                entity.IsBlocked = true;
+                userRepository.Update(entity);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

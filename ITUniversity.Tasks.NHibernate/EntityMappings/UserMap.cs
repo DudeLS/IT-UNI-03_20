@@ -38,6 +38,11 @@ namespace ITUniversity.Tasks.NHibernate.EntityMappings
                 x.Type(NHibernateUtil.String);
             });
 
+            Property(b => b.IsBlocked, x =>
+            {
+                x.Type(NHibernateUtil.Boolean);
+            });
+
             Table(User.TableName);
         }
     }
