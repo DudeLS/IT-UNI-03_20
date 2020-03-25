@@ -1,4 +1,6 @@
-﻿using ITUniversity.Application.Services;
+﻿using System.Collections.Generic;
+
+using ITUniversity.Application.Services;
 using ITUniversity.Tasks.API.Services.Dto;
 
 namespace ITUniversity.Tasks.API.Services
@@ -12,5 +14,7 @@ namespace ITUniversity.Tasks.API.Services
         void Delete(long id);
 
         TaskDto Get(long id);
+
+        ICollection<TaskDto> GetAll();
     }
 }

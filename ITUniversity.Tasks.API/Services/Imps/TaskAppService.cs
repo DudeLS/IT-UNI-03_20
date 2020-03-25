@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 
 using ITUniversity.Application.Services;
 using ITUniversity.Tasks.API.Services.Dto;
@@ -26,17 +27,24 @@ namespace ITUniversity.Tasks.API.Services.Imps
             return dto;
         }
 
-        public TaskDto Create(TaskCreateDto task)
+        public ICollection<TaskDto> GetAll()
         {
-            var entity = mapper.Map<TaskBase>(task);
+            var entities = taskManager.GetAll();
+            var dtos = mapper.Map<ICollection<TaskDto>>(entities);
+            return dtos;
+        }
+
+        public TaskDto Create(TaskCreateDto createDto)
+        {
+            var entity = mapper.Map<TaskBase>(createDto);
             taskManager.Create(entity);
             var dto = mapper.Map<TaskDto>(entity);
             return dto;
         }
 
-        public TaskDto Update(TaskUpdateDto task)
+        public TaskDto Update(TaskUpdateDto updateDto)
         {
-            var entity = mapper.Map<TaskBase>(task);
+            var entity = mapper.Map<TaskBase>(updateDto);
             taskManager.Update(entity);
             var dto = mapper.Map<TaskDto>(entity);
             return dto;

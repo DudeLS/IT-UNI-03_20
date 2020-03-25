@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 
-using ITUniversity.Tasks.Entities;
-using ITUniversity.Tasks.Managers;
+using ITUniversity.Tasks.API.Services;
 using ITUniversity.Tasks.Web.Models;
 
 using Microsoft.AspNetCore.Mvc;
@@ -10,18 +9,18 @@ namespace ITUniversity.Tasks.Web.Controllers
 {
     public class TaskController : Controller
     {
-        private readonly ITaskManager taskManager;
+        private readonly ITaskAppService taskAppService;
         private readonly IMapper mapper;
 
-        public TaskController(ITaskManager taskManager, IMapper mapper)
+        public TaskController(ITaskAppService taskAppService, IMapper mapper)
         {
-            this.taskManager = taskManager;
+            this.taskAppService = taskAppService;
             this.mapper = mapper;
         }
 
         public IActionResult Index()
         {
-            var tasks = taskManager.GetAll();
+            var tasks = taskAppService.GetAll();
             return View(tasks);
         }
 
@@ -32,22 +31,9 @@ namespace ITUniversity.Tasks.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(TaskCreateModel task)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(task);
-            }
-            var entity = mapper.Map<TaskBase>(task);
-            taskManager.Create(entity);
-
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
         public IActionResult Delete(long id)
         {
-            taskManager.Delete(id);
+            taskAppService.Delete(id);
 
             return Json(new { success = true });
         }
@@ -55,7 +41,7 @@ namespace ITUniversity.Tasks.Web.Controllers
         [HttpGet]
         public IActionResult Details(long id)
         {
-            var task = taskManager.Get(id);
+            var task = taskAppService.Get(id);
 
             return View(task);
         }
@@ -63,7 +49,7 @@ namespace ITUniversity.Tasks.Web.Controllers
         [HttpGet]
         public IActionResult Edit(long id)
         {
-            var task = taskManager.Get(id);
+            var task = taskAppService.Get(id);
             var model = mapper.Map<TaskEditModel>(task);
 
             return View(model);
@@ -72,8 +58,8 @@ namespace ITUniversity.Tasks.Web.Controllers
         [HttpPost]
         public IActionResult Edit(TaskEditModel task)
         {
-            var entity = mapper.Map<TaskBase>(task);
-            taskManager.Update(entity);
+            //var entity = mapper.Map<TaskBase>(task);
+            //taskAppService.Update(entity);
 
             return RedirectToAction("Index");
         }
