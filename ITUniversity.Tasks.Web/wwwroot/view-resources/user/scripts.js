@@ -4,12 +4,14 @@ user.block = function (id, invoker) {
     $.ajax({
         url: "/api/services/user/block",
         dataType: "json",
-        //contentType: "application/json",
         method: "POST",
-        data: { id: id },//JSON.stringify({ id: id }),
-        success: function () {
-            debugger;
-            invoker.closest('tr').remove();
+        data: { id: id },
+        success: function (data) {
+            if (data) {
+                invoker.closest('tr').remove();
+            } else {
+                alert('Что-то пошло не так...');
+            }
         }
     });
 }

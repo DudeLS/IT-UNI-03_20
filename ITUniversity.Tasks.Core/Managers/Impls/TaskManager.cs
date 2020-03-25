@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using ITUniversity.Tasks.Entities;
 using ITUniversity.Tasks.Repositories;
 
-namespace ITUniversity.Tasks.Managers
+namespace ITUniversity.Tasks.Managers.Impls
 {
     /// <summary>
     /// Менеджер сущности <see cref="TaskBase"/>

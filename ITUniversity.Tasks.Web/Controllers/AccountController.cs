@@ -64,6 +64,7 @@ namespace ITUniversity.Tasks.Web.Controllers
             }
 
             await Authenticate(model.Login);
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -88,8 +89,8 @@ namespace ITUniversity.Tasks.Web.Controllers
             {
                 return View(model);
             }
-            var user = userAppService.Get(model.Login);
-            if (user == null)
+            var isFree = await userAppService.FreeLogin(model.Login);
+            if (isFree)
             {
                 var dto = mapper.Map<CreateUserDto>(model);
                 userAppService.Create(dto);

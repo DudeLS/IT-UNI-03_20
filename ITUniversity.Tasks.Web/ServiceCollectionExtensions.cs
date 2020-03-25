@@ -3,6 +3,7 @@ using ITUniversity.Tasks.API;
 using ITUniversity.Tasks.API.Services;
 using ITUniversity.Tasks.API.Services.Imps;
 using ITUniversity.Tasks.Managers;
+using ITUniversity.Tasks.Managers.Impls;
 using ITUniversity.Tasks.NHibernate;
 using ITUniversity.Tasks.NHibernate.Repositories;
 using ITUniversity.Tasks.Repositories;
@@ -20,6 +21,7 @@ namespace ITUniversity.Tasks.Web
         public static IServiceCollection AddTaskCore(this IServiceCollection services)
         {
             services.AddTransient<ITaskManager, TaskManager>();
+            services.AddTransient<IUserManager, UserManager>();
 
             return services;
         }

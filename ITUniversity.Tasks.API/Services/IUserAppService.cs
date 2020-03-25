@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using ITUniversity.Application.Services;
 using ITUniversity.Tasks.API.Services.Dto;
@@ -48,6 +49,12 @@ namespace ITUniversity.Tasks.API.Services
         /// Заблокировать пользователя
         /// </summary>
         /// <param name="id">Иденитификатор пользователя</param>
-        bool Block(int id);
+        Task<bool> Block(int id);
+
+        /// <summary>
+        /// Свободный логин
+        /// </summary>
+        /// <param name="login">Логин</param>
+        Task<bool> FreeLogin(string login);
     }
 }

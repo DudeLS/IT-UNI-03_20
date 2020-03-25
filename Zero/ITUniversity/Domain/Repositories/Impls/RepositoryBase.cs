@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 using ITUniversity.Domain.Entities;
 
@@ -37,9 +38,27 @@ namespace ITUniversity.Domain.Repositories.Impls
         }
 
         /// <inheritdoc/>
+        public virtual async Task<TEntity> GetAsync(TPrimaryKey id)
+        {
+            var entity = await FirstOrDefaultAsync(id);
+            if (entity == null)
+            {
+                throw new Exception($"Сущность с id: {id}, не найдена");
+            }
+
+            return entity;
+        }
+
+        /// <inheritdoc/>
         public virtual TEntity FirstOrDefault(TPrimaryKey id)
         {
             return GetAll().FirstOrDefault(CreateEqualityExpressionForId(id));
+        }
+
+        /// <inheritdoc/>
+        public virtual Task<TEntity> FirstOrDefaultAsync(TPrimaryKey id)
+        {
+            return Task.FromResult(FirstOrDefault(id));
         }
 
         /// <inheritdoc/>
@@ -49,10 +68,19 @@ namespace ITUniversity.Domain.Repositories.Impls
         }
 
         /// <inheritdoc/>
+        public virtual Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Task.FromResult(FirstOrDefault(predicate));
+        }
+
+        /// <inheritdoc/>
         public abstract TEntity Save(TEntity entity);
 
         /// <inheritdoc/>
         public abstract TEntity Update(TEntity entity);
+
+        /// <inheritdoc/>
+        public abstract Task<TEntity> UpdateAsync(TEntity entity);
 
         /// <inheritdoc/>
         public abstract void Delete(TPrimaryKey id);

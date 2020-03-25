@@ -1,7 +1,9 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 
 using ITUniversity.Domain.Entities;
 using ITUniversity.Domain.Repositories.Impls;
+
 using NHibernate;
 
 namespace ITUniversity.Tasks.NHibernate.Repositories
@@ -41,6 +43,12 @@ namespace ITUniversity.Tasks.NHibernate.Repositories
         }
 
         /// <inheritdoc/>
+        public override async Task<TEntity> FirstOrDefaultAsync(TPrimaryKey id)
+        {
+            return await Session.GetAsync<TEntity>(id);
+        }
+
+        /// <inheritdoc/>
         public override TEntity Save(TEntity entity)
         {
             Session.Save(entity);
@@ -53,6 +61,14 @@ namespace ITUniversity.Tasks.NHibernate.Repositories
         {
             Session.Update(entity);
             Session.Flush(); //Не правильно, только для тестов работы приложения
+            return entity;
+        }
+
+        /// <inheritdoc/>
+        public override async Task<TEntity> UpdateAsync(TEntity entity)
+        {
+            await Session.UpdateAsync(entity);
+            await Session.FlushAsync(); //Не правильно, только для тестов работы приложения
             return entity;
         }
 

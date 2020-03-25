@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 using ITUniversity.Domain.Entities;
 
@@ -12,7 +13,7 @@ namespace ITUniversity.Domain.Repositories
     /// </summary>
     /// <typeparam name="TEntity">Тип сущность</typeparam>
     /// <typeparam name="TPrimaryKey">Тип первичного ключа</typeparam>
-    public interface IRepository<TEntity, TPrimaryKey> : IRepository 
+    public interface IRepository<TEntity, TPrimaryKey> : IRepository
         where TEntity : class, IEntity<TPrimaryKey>
     {
         /// <summary>
@@ -26,6 +27,12 @@ namespace ITUniversity.Domain.Repositories
         /// </summary>
         /// <param name="entity">Обновляемая сущность</param>
         TEntity Update(TEntity entity);
+
+        /// <summary>
+        /// Обновить существующую сущность
+        /// </summary>
+        /// <param name="entity">Обновляемая сущность</param>
+        Task<TEntity> UpdateAsync(TEntity entity);
 
         /// <summary>
         /// Удалить сущность
@@ -50,6 +57,12 @@ namespace ITUniversity.Domain.Repositories
         TEntity Get(TPrimaryKey id);
 
         /// <summary>
+        /// Получить сущность
+        /// </summary>
+        /// <param name="id">Идентификатор</param>
+        Task<TEntity> GetAsync(TPrimaryKey id);
+
+        /// <summary>
         /// Получить сущность или null
         /// </summary>
         /// <param name="id">Идентификатор</param>
@@ -58,7 +71,19 @@ namespace ITUniversity.Domain.Repositories
         /// <summary>
         /// Получить сущность или null
         /// </summary>
+        /// <param name="id">Идентификатор</param>
+        Task<TEntity> FirstOrDefaultAsync(TPrimaryKey id);
+
+        /// <summary>
+        /// Получить сущность или null
+        /// </summary>
         /// <param name="predicate">Условие</param>
         TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate);
+
+        /// <summary>
+        /// Получить сущность или null
+        /// </summary>
+        /// <param name="predicate">Условие</param>
+        Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
     }
 }

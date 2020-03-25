@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 using AutoMapper;
 
 using ITUniversity.Tasks.API.Services.Dto;
 using ITUniversity.Tasks.Entities;
+using ITUniversity.Tasks.Managers;
 using ITUniversity.Tasks.Repositories;
 
 namespace ITUniversity.Tasks.API.Services.Imps
@@ -16,16 +17,23 @@ namespace ITUniversity.Tasks.API.Services.Imps
     {
         private readonly IUserRepository userRepository;
 
+        private readonly IUserManager userManager;
+
         private readonly IMapper mapper;
 
         /// <summary>
         /// Инициализировать экземпляр <see cref="UserAppService"/>
         /// </summary>
         /// <param name="userRepository">Репозиторий пользователей</param>
+        /// <param name="userManager"></param>
         /// <param name="mapper">Маппер</param>
-        public UserAppService(IUserRepository userRepository, IMapper mapper)
+        public UserAppService(
+            IUserRepository userRepository,
+            IUserManager userManager,
+            IMapper mapper)
         {
             this.userRepository = userRepository;
+            this.userManager = userManager;
             this.mapper = mapper;
         }
 
@@ -54,7 +62,7 @@ namespace ITUniversity.Tasks.API.Services.Imps
         /// <inheritdoc/>
         public ICollection<UserDto> GetAll()
         {
-            var entities = userRepository.GetAll().Where(e => !e.IsBlocked).ToList();
+            var entities = userRepository.GetAllList();
             return mapper.Map<ICollection<UserDto>>(entities);
         }
 
@@ -66,19 +74,15 @@ namespace ITUniversity.Tasks.API.Services.Imps
         }
 
         /// <inheritdoc/>
-        public bool Block(int id)
+        public async Task<bool> Block(int id)
         {
-            try
-            {
-                var entity = userRepository.Get(id);
-                entity.IsBlocked = true;
-                userRepository.Update(entity);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return await userManager.Block(id);
+        }
+
+        /// <inheritdoc/>
+        public async Task<bool> FreeLogin(string login)
+        {
+            return await userManager.FreeLogin(login);
         }
     }
 }
