@@ -1,5 +1,8 @@
 ﻿namespace ITUniversity.Tasks.API.Services.Dto
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class RoleDto
     {
         /// <summary>
@@ -11,6 +14,9 @@
             set;
         }
 
+        /// <summary>
+        /// Имя
+        /// </summary>
         public string Name
         {
             get;

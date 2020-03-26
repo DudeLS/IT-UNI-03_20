@@ -46,6 +46,13 @@ namespace ITUniversity.Tasks.API.Services.Imps
         }
 
         /// <inheritdoc/>
+        public UserDto Get(int id)
+        {
+            var entity = userRepository.Get(id);
+            return mapper.Map<UserDto>(entity);
+        }
+
+        /// <inheritdoc/>
         public UserDto Get(string login)
         {
             var entity = userRepository.FirstOrDefault(e => e.Login == login);

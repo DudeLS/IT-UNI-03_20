@@ -11,7 +11,7 @@ namespace ITUniversity.Tasks.Web.Controllers
     /// <summary>
     /// Контроллер для работы с задачами
     /// </summary>
-    [Authorize]
+    [Authorize(Roles = "admin, user")]
     public class TaskController : Controller
     {
         private readonly ITaskAppService taskAppService;

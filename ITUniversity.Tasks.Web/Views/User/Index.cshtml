@@ -23,6 +23,9 @@
                                         @user.Login
                                     </h5>
                                     <div style="width: 100%;">
+                                        <a class="material-icons" style="float: right;" href="@Url.Action("Edit", "User", new { id = user.Id })">
+                                            edit
+                                        </a>
                                         <span class="material-icons"
                                               style="float: right; cursor: pointer; color: red;"
                                               onclick="user.block('@user.Id', this);"

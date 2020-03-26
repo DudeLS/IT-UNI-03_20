@@ -20,6 +20,12 @@ namespace ITUniversity.Tasks.API.Services
         /// <summary>
         /// Получить пользователя
         /// </summary>
+        /// <param name="id">Идентификатор пользователя</param>
+        UserDto Get(int id);
+
+        /// <summary>
+        /// Получить пользователя
+        /// </summary>
         /// <param name="login">Логин</param>
         UserDto Get(string login);
 

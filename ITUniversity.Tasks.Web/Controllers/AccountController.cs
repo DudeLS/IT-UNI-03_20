@@ -92,8 +92,8 @@ namespace ITUniversity.Tasks.Web.Controllers
             var isFree = await userAppService.FreeLogin(model.Login);
             if (isFree)
             {
-                var dto = mapper.Map<CreateUserDto>(model);
-                var userDto = userAppService.Create(dto);
+                var createUserDto = mapper.Map<CreateUserDto>(model);
+                var userDto = userAppService.Create(createUserDto);
 
                 await Authenticate(userDto);
 
@@ -115,6 +115,15 @@ namespace ITUniversity.Tasks.Web.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
             return RedirectToAction("Login", "Account");
+        }
+
+        /// <summary>
+        /// Получить страницу с отказом в доступе
+        /// </summary>
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
 
         private async Task Authenticate(UserDto user)

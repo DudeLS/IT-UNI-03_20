@@ -59,6 +59,7 @@ namespace ITUniversity.Tasks.Web
             services.AddScoped(factory => sessionFactory.OpenSession());
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
 
             return services;
         }

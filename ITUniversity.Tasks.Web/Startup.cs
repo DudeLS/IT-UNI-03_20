@@ -30,6 +30,7 @@ namespace ITUniversity.Tasks.Web
                 .AddCookie(options =>
                 {
                     options.LoginPath = new PathString("/Account/Login");
+                    options.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 })
                 ;
 
