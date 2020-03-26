@@ -47,7 +47,12 @@ namespace ITUniversity.Tasks.Web.Controllers
         public IActionResult Edit(int id)
         {
             var userDto = userAppService.Get(id);
-            return View(mapper.Map<UserEditModel>(userDto));
+            var model = mapper.Map<UserEditModel>(userDto);
+            if (userDto.Role != null)
+            {
+                model.RoleId = userDto.Role.Id;
+            }
+            return View(model);
         }
     }
 }

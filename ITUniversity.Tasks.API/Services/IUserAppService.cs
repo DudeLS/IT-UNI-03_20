@@ -18,6 +18,13 @@ namespace ITUniversity.Tasks.API.Services
         UserDto Create(CreateUserDto dto);
 
         /// <summary>
+        /// Обновить пользователя
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        UserDto Update(UpdateUserDto dto);
+
+        /// <summary>
         /// Получить пользователя
         /// </summary>
         /// <param name="id">Идентификатор пользователя</param>

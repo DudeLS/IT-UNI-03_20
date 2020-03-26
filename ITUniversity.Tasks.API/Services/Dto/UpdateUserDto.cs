@@ -1,11 +1,9 @@
-﻿using System.ComponentModel;
-
-namespace ITUniversity.Tasks.Web.Models
+﻿namespace ITUniversity.Tasks.API.Services.Dto
 {
     /// <summary>
     /// 
     /// </summary>
-    public class UserEditModel
+    public class UpdateUserDto
     {
         /// <summary>
         /// Идентификатор
@@ -17,18 +15,8 @@ namespace ITUniversity.Tasks.Web.Models
         }
 
         /// <summary>
-        /// Логин
-        /// </summary>
-        public string Login
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Почта
         /// </summary>
-        [DisplayName("Электронная почта")]
         public string Email
         {
             get;
@@ -38,7 +26,6 @@ namespace ITUniversity.Tasks.Web.Models
         /// <summary>
         /// Роль
         /// </summary>
-        [DisplayName("Роль")]
         public int? RoleId
         {
             get;

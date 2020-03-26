@@ -1,0 +1,39 @@
+﻿@using ITUniversity.Tasks.Web.Models
+@using ITUniversity.Tasks.API.Services
+
+@model UserEditModel
+
+@inject IRoleAppService RoleAppService
+
+@{
+    var roles = RoleAppService.GetAll().Select(role => new SelectListItem { Text = role.Name, Value = role.Id.ToString() });
+    var formId = $"user_{Model.Id}";
+    var backUrl = Url.Action("Index", "User");
+}
+
+<div class="card">
+    <div class="card-header">
+        Редактирование пользователя - @Model.Login
+    </div>
+    <div class="card-body">
+        <form id="@formId">
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email)
+                @Html.TextBoxFor(model => model.Email, string.Empty, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RoleId)
+                @Html.DropDownListFor(model => model.RoleId, roles, string.Empty, new { @class = "form-control" })
+            </div>
+            <button class="btn btn-outline-success" onclick="user.update('@formId', '@backUrl')">Сохранить</button>
+        </form>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/view-resources/user/scripts.js"></script>
+}
