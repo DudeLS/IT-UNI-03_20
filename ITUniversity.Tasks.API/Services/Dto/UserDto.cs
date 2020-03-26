@@ -31,5 +31,14 @@
             get;
             set;
         }
+
+        /// <summary>
+        /// Роль
+        /// </summary>
+        public RoleDto Role
+        {
+            get;
+            set;
+        }
     }
 }
