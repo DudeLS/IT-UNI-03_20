@@ -3,6 +3,7 @@
 using AutoMapper;
 
 using ITUniversity.Application.Services;
+using ITUniversity.Runtime.Session;
 using ITUniversity.Tasks.API.Services.Dto;
 using ITUniversity.Tasks.Entities;
 using ITUniversity.Tasks.Managers;
@@ -23,7 +24,8 @@ namespace ITUniversity.Tasks.API.Services.Imps
         /// </summary>
         /// <param name="taskManager">Менеджер для работы с задачами</param>
         /// <param name="mapper">Маппер</param>
-        public TaskAppService(ITaskManager taskManager, IMapper mapper)
+        public TaskAppService(ITaskManager taskManager, IMapper mapper, IAppSession session)
+            : base(session)
         {
             this.taskManager = taskManager;
             this.mapper = mapper;

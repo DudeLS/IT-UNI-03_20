@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using ITUniversity.Runtime.Session
+
+@inject IAppSession AppSession
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -30,6 +34,7 @@
                         </li>
                     </ul>
                 </div>
+                <span class="navbar-text" style="margin-right: 10px;">@(AppSession.UserLogin)</span>
                 <a href="@Url.Action("Logout", "Account")" class="btn btn-outline-info">Выйти</a>
             </div>
         </nav>

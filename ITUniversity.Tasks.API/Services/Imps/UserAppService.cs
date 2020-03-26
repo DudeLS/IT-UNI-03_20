@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 
 using AutoMapper;
 
+using ITUniversity.Application.Services;
+using ITUniversity.Runtime.Session;
 using ITUniversity.Tasks.API.Services.Dto;
 using ITUniversity.Tasks.Entities;
 using ITUniversity.Tasks.Managers;
@@ -13,7 +15,7 @@ namespace ITUniversity.Tasks.API.Services.Imps
     /// <summary>
     /// Сервис для работы с пользователями
     /// </summary>
-    public class UserAppService : IUserAppService
+    public class UserAppService : ApplicationService, IUserAppService
     {
         private readonly IUserRepository userRepository;
 
@@ -34,7 +36,9 @@ namespace ITUniversity.Tasks.API.Services.Imps
             IUserRepository userRepository,
             IRoleRepository roleRepository,
             IUserManager userManager,
-            IMapper mapper)
+            IMapper mapper,
+            IAppSession session)
+            : base(session)
         {
             this.userRepository = userRepository;
             this.roleRepository = roleRepository;
