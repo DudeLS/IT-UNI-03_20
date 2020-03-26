@@ -1,5 +1,6 @@
 ﻿using ITUniversity.Tasks.API.Services;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ITUniversity.Tasks.Web.Controllers
@@ -7,6 +8,7 @@ namespace ITUniversity.Tasks.Web.Controllers
     /// <summary>
     /// Контроллер для работы с пользователями
     /// </summary>
+    [Authorize]
     public class UserController : Controller
     {
         private readonly IUserAppService userAppService;

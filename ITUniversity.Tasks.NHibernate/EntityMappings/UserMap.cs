@@ -16,31 +16,41 @@ namespace ITUniversity.Tasks.NHibernate.EntityMappings
         /// </summary>
         public UserMap()
         {
-            Id(x => x.Id, x =>
+            Id(property => property.Id, mapper =>
             {
-                x.Generator(Generators.Increment);
-                x.Type(NHibernateUtil.Int32);
-                x.Column("Id");
+                mapper.Generator(Generators.Increment);
+                mapper.Type(NHibernateUtil.Int32);
+                mapper.Column("Id");
             });
 
-            Property(b => b.Login, x =>
+            Property(property => property.Login, mapping =>
             {
-                x.Type(NHibernateUtil.String);
+                mapping.Type(NHibernateUtil.String);
+                mapping.NotNullable(true);
             });
 
-            Property(b => b.Email, x =>
+            Property(property => property.Email, mapping =>
             {
-                x.Type(NHibernateUtil.String);
+                mapping.Type(NHibernateUtil.String);
+                mapping.NotNullable(true);
             });
 
-            Property(b => b.Password, x =>
+            Property(property => property.Password, mapping =>
             {
-                x.Type(NHibernateUtil.String);
+                mapping.Type(NHibernateUtil.String);
+                mapping.NotNullable(true);
             });
 
-            Property(b => b.IsBlocked, x =>
+            Property(property => property.IsBlocked, mapping =>
             {
-                x.Type(NHibernateUtil.Boolean);
+                mapping.Type(NHibernateUtil.Boolean);
+                mapping.NotNullable(true);
+            });
+
+            ManyToOne(property => property.Role, mapping =>
+            {
+                mapping.Column("RoleId");
+                mapping.Cascade(Cascade.All);
             });
 
             Table(User.TableName);

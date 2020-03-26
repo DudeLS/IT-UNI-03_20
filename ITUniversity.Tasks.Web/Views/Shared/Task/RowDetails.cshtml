@@ -1,15 +1,15 @@
-﻿@using ITUniversity.Tasks.Entities
+﻿@using ITUniversity.Tasks.API.Services.Dto
 @using TaskStatus = ITUniversity.Tasks.Enums.TaskStatus
 
-@model TaskBase
+@model TaskDto
 
 @{
-    Func<TaskBase, string> calculateCardTitleStyle = task =>
+    Func<TaskDto, string> calculateCardTitleStyle = task =>
     {
         return $"display: flex;{(string.IsNullOrWhiteSpace(task.Description) ? " margin-bottom: 0px;" : "")}";
     };
 
-    Func<TaskBase, string> calculateBadgeClass = task =>
+    Func<TaskDto, string> calculateBadgeClass = task =>
     {
         return $"badge badge-{(Model.Status == TaskStatus.ToDo ? "primary" : "danger")}";
     };
