@@ -78,8 +78,11 @@ namespace ITUniversity.Tasks.API.Services.Imps
         {
             var entity = mapper.Map<TaskBase>(createDto);
             entity.Executor = GetUserById(createDto.Executor);
+
             taskManager.Create(entity);
+
             var dto = mapper.Map<TaskDto>(entity);
+
             return dto;
         }
 
