@@ -1,5 +1,4 @@
 ﻿using ITUniversity.Tasks.Entities;
-using ITUniversity.Tasks.Enums;
 
 namespace ITUniversity.Tasks.API.Services.Dto
 {
@@ -27,9 +26,9 @@ namespace ITUniversity.Tasks.API.Services.Dto
         }
 
         /// <summary>
-        /// Статус
+        /// Исполнитель
         /// </summary>
-        public TaskStatus Status
+        public int? Executor
         {
             get;
             set;

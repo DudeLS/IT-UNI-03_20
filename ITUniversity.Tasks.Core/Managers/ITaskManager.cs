@@ -37,6 +37,18 @@ namespace ITUniversity.Tasks.Managers
         ICollection<TaskBase> GetAll();
 
         /// <summary>
+        /// Получить входящие задачи
+        /// </summary>
+        /// <param name="user">Пользователь</param>
+        ICollection<TaskBase> GetIncoming(User user);
+
+        /// <summary>
+        /// Получить исходящие задачи
+        /// </summary>
+        /// <param name="user">Пользователь</param>
+        ICollection<TaskBase> GetOutgoing(User user);
+
+        /// <summary>
         /// Обновить
         /// </summary>
         /// <param name="task">Задача</param>

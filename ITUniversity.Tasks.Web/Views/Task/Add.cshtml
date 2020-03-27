@@ -1,8 +1,12 @@
-﻿@using ITUniversity.Tasks.Web.Models
+﻿@using ITUniversity.Tasks.API.Services
+@using ITUniversity.Tasks.Web.Models
 
 @model TaskCreateModel
 
+@inject IUserAppService UserAppService
+
 @{
+    var users = UserAppService.GetAll().Select(user => new SelectListItem { Text = user.Login, Value = user.Id.ToString() });
     const string formId = "task_create_form";
     var returnUrl = Url.Action("Index", "Task");
 }
@@ -18,9 +22,15 @@
                 @Html.TextBoxFor(model => model.Subject, string.Empty, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Subject)
             </div>
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Description)
                 @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Executor)
+                @Html.DropDownListFor(model => model.Executor, users, string.Empty, new { @class = "form-control" })
             </div>
 
             <input type="button" class="btn btn-success" value="Сохранить" onclick="task.create('@(formId)', '@(returnUrl)');">

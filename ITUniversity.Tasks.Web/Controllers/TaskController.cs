@@ -11,7 +11,7 @@ namespace ITUniversity.Tasks.Web.Controllers
     /// <summary>
     /// Контроллер для работы с задачами
     /// </summary>
-    [Authorize(Roles = "admin, user")]
+    [Authorize(Roles = "user, admin")]
     public class TaskController : Controller
     {
         private readonly ITaskAppService taskAppService;
@@ -35,8 +35,9 @@ namespace ITUniversity.Tasks.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var dtos = taskAppService.GetAll();
-            return View(dtos);
+            var incoming = taskAppService.GetMyIncoming();
+            var outgoing = taskAppService.GetMyOutgoing();
+            return View(new TasksModel { Incoming = incoming, Outgoing = outgoing });
         }
 
         /// <summary>
@@ -79,19 +80,10 @@ namespace ITUniversity.Tasks.Web.Controllers
         [HttpGet]
         public IActionResult Edit(long id)
         {
-            var dto = taskAppService.Get(id);
-            var model = mapper.Map<TaskEditModel>(dto);
+            var taskDto = taskAppService.Get(id);
+            var model = mapper.Map<TaskEditModel>(taskDto);
 
             return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult Edit(TaskEditModel task)
-        {
-            //var entity = mapper.Map<TaskBase>(task);
-            //taskAppService.Update(entity);
-
-            return RedirectToAction("Index");
         }
     }
 }

@@ -47,9 +47,27 @@ namespace ITUniversity.Tasks.API.Services.Dto
         }
 
         /// <summary>
+        /// Автор
+        /// </summary>
+        public UserDto CreationAuthor
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Статус
         /// </summary>
         public TaskStatus Status
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Исполнитель
+        /// </summary>
+        public UserDto Executor
         {
             get;
             set;

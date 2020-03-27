@@ -1,6 +1,6 @@
-﻿@using ITUniversity.Tasks.API.Services.Dto
+﻿@using ITUniversity.Tasks.Web.Models
 
-@model ICollection<TaskDto>
+@model TasksModel
 
 @{
     ViewData["Title"] = "Список задач";
@@ -13,16 +13,40 @@
         <a style="float: right;" href="@createUrl" type="button" class="btn btn-primary">Добавить задачу</a>
     </div>
     <div class="card-body">
-        <table class="table table-borderless">
-            @foreach (var task in Model)
-            {
-                <tr>
-                    <td style="padding-left: 0px; padding-right: 0px;">
-                        @await Html.PartialAsync("Task/RowDetails", task)
-                    </td>
-                </tr>
-            }
-        </table>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#incoming">Входящие</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#outgoing">Созданные мной</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="incoming">
+                <table class="table table-borderless">
+                    @foreach (var task in Model.Incoming)
+                    {
+                        <tr>
+                            <td style="padding-left: 0px; padding-right: 0px;">
+                                @await Html.PartialAsync("Task/RowDetails", task)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="tab-pane fade" id="outgoing">
+                <table class="table table-borderless">
+                    @foreach (var task in Model.Outgoing)
+                    {
+                        <tr>
+                            <td style="padding-left: 0px; padding-right: 0px;">
+                                @await Html.PartialAsync("Task/RowDetails", task)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 

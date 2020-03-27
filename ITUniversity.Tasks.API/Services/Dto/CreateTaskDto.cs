@@ -24,5 +24,14 @@ namespace ITUniversity.Tasks.API.Services.Dto
             get;
             set;
         }
+
+        /// <summary>
+        /// Исполнитель
+        /// </summary>
+        public int? Executor
+        {
+            get;
+            set;
+        }
     }
 }

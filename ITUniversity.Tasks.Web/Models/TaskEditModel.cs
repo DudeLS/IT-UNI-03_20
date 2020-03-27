@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace ITUniversity.Tasks.Web.Models
 {
@@ -28,6 +29,7 @@ namespace ITUniversity.Tasks.Web.Models
         /// <summary>
         /// Описание
         /// </summary>
+        [DisplayName("Описание")]
         public string Description
         {
             get;
@@ -35,9 +37,10 @@ namespace ITUniversity.Tasks.Web.Models
         }
 
         /// <summary>
-        /// Дата создания
+        /// Исполнитель
         /// </summary>
-        public DateTime CreationDate
+        [DisplayName("Исполнитель")]
+        public int? Executor
         {
             get;
             set;

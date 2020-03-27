@@ -26,6 +26,7 @@ namespace ITUniversity.Tasks.NHibernate.EntityMappings
             Property(b => b.Subject, x =>
             {
                 x.Type(NHibernateUtil.String);
+                x.NotNullable(true);
             });
 
             Property(b => b.Description, x =>
@@ -39,10 +40,21 @@ namespace ITUniversity.Tasks.NHibernate.EntityMappings
                 x.NotNullable(true);
             });
 
+            ManyToOne(property => property.CreationAuthor, mapping =>
+            {
+                mapping.Column("CreationAuthorId");
+                mapping.NotNullable(true);
+            });
+
             Property(b => b.Status, x =>
             {
                 x.Type(NHibernateUtil.Int32);
                 x.NotNullable(true);
+            });
+
+            ManyToOne(property => property.Executor, mapping =>
+            {
+                mapping.Column("ExecutorId");
             });
 
             Table(TaskBase.TableName);

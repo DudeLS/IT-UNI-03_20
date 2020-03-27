@@ -28,7 +28,7 @@
                 @Html.LabelFor(model => model.RoleId)
                 @Html.DropDownListFor(model => model.RoleId, roles, string.Empty, new { @class = "form-control" })
             </div>
-            <button class="btn btn-outline-success" onclick="user.update('@formId', '@backUrl')">Сохранить</button>
+            <input type="button" class="btn btn-outline-success" onclick="user.update('@formId', '@backUrl');" value="Сохранить" />
         </form>
     </div>
 </div>

@@ -1,25 +1,43 @@
-﻿@using ITUniversity.Tasks.Web.Models
+﻿@using ITUniversity.Tasks.API.Services
+@using ITUniversity.Tasks.Web.Models
 
 @model TaskEditModel
+
+@inject IUserAppService UserAppService
+
+@{
+    var users = UserAppService.GetAll().Select(user => new SelectListItem { Text = user.Login, Value = user.Id.ToString() });
+    var formId = $"task_{Model.Id}";
+    var backUrl = Url.Action("Index", "Task");
+}
 
 <div class="card">
     <div class="card-header">
         Редактирование задачи - @Model.Subject
     </div>
     <div class="card-body">
-        @using (Html.BeginForm("Edit", "Task"))
-        {
+        <form id="@formId">
             @Html.HiddenFor(model => model.Id)
-            @Html.HiddenFor(model => model.Subject)
-            @Html.HiddenFor(model => model.CreationDate)
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Description)
                 @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
             </div>
 
-            <button type="submit" class="btn btn-success">Сохранить</button>
-            <a class="btn btn-danger" href="@Url.Action("Index", "Task")">Отмена</a>
-        }
+            <div class="form-group">
+                @Html.LabelFor(model => model.Executor)
+                @Html.DropDownListFor(model => model.Executor, users, string.Empty, new { @class = "form-control" })
+            </div>
+
+            <input type="button" class="btn btn-success" value="Сохранить" onclick="task.update('@formId', '@backUrl');" />
+            <a class="btn btn-danger" href="@backUrl">Отмена</a>
+        </form>
     </div>
 </div>
+
+@section scripts
+{
+    <script src="~/view-resources/task/scripts.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,4 +1,5 @@
 ﻿using System;
+
 using ITUniversity.Domain.Entities;
 using ITUniversity.Tasks.Enums;
 
@@ -17,21 +18,55 @@ namespace ITUniversity.Tasks.Entities
         /// <summary>
         /// Тема
         /// </summary>
-        public virtual string Subject { get; set; }
+        public virtual string Subject
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Описание
         /// </summary>
-        public virtual string Description { get; set; }
+        public virtual string Description
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Дата создания
         /// </summary>
-        public virtual DateTime CreationDate { get; set; }
+        public virtual DateTime CreationDate
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Автор
+        /// </summary>
+        public virtual User CreationAuthor
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Статус
         /// </summary>
-        public virtual TaskStatus Status { get; set; }
+        public virtual TaskStatus Status
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Исполнитель
+        /// </summary>
+        public virtual User Executor
+        {
+            get;
+            set;
+        }
     }
 }
